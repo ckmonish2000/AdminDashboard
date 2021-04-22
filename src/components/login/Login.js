@@ -13,12 +13,7 @@ export default function Login() {
     username: "",
     password: "",
   });
-  const [CheckCredentials, data] = useMutation(VerifyToken, {
-    onCompleted: (data) => {
-      localStorage.setItem("token", data.tokenAuth?.token);
-      history.push({ pathname: "/" });
-    },
-  });
+  const [CheckCredentials, data] = useMutation(VerifyToken);
 
   const HandleChange = (e) => {
     setLoginFields({ ...LoginFields, [e.target.name]: e.target.value });
@@ -31,9 +26,13 @@ export default function Login() {
           email: LoginFields.username,
           password: LoginFields.password,
         },
+      }).then((data) => {
+        let tkn = data.data.tokenAuth?.token;
+        localStorage.setItem("token", tkn);
+        history.push({ pathname: "/" });
       });
     } else {
-      message.warning("Fill in all the field");
+      message.warning("Fill in all the fields");
     }
   };
 
