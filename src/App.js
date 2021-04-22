@@ -1,21 +1,21 @@
 import React from 'react';
 import {useQuery} from "@apollo/client"
-import {getRestaurantDetails} from "./services/queries"
-import Tes from "./components/tes"
+import {getPermissions,getRoles} from "./services/queries"
+
 
 export const AdminContext=React.createContext()
 
 function App() {
-  const restDetails=useQuery(getRestaurantDetails)
+  let data=useQuery(getRoles)
+  console.log(data.error);
   return (
-    <AdminContext.Provider value={{
-      rest:restDetails,
-      hello:"mk"
-    }}>
+    // <AdminContext.Provider value={{
+      
+    // }}>
     <div className="App">
-     <Tes/>
+      hdfbdhfh
     </div>
-    </AdminContext.Provider>
+    // </AdminContext.Provider>
   );
 }
 

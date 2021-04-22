@@ -1,15 +1,23 @@
 import {gql} from "@apollo/client"
 
 
-let getRestaurantDetails=gql`
-query restaurantType{
-    RestaurantDetails{
-      restName
-      restType
-      restCategory
+let getPermissions=gql`
+query Premissions{
+    permissions{
+      id
+      name
+      codename
     }
   }
 `
 
+let getRoles=gql`
+query getRoles{
+    roles{
+      name,
+      id,
+    }
+  }
+`
 
-export {getRestaurantDetails}
+export {getPermissions,getRoles}
