@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import 'antd/dist/antd.css';
 import { ApolloClient, HttpLink, ApolloLink, InMemoryCache, concat, ApolloProvider } from '@apollo/client';
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
 
@@ -26,7 +27,9 @@ let client=new ApolloClient({link:concat(authMiddleware,link),cache:new InMemory
 
 ReactDOM.render(
   <ApolloProvider client={client}>
+  <BrowserRouter>
   <App />
+  </BrowserRouter>
   </ApolloProvider>,
   document.getElementById('root')
 );
