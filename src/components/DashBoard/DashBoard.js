@@ -6,9 +6,13 @@ export const AdminContext = React.createContext();
 export default function DashBoard() {
   let Roles = useQuery(getRoles);
   let Permissions = useQuery(getPermissions);
-
   return (
-    <AdminContext.Provider value={{}}>
+    <AdminContext.Provider
+      value={{
+        Roles,
+        Permissions,
+      }}
+    >
       <div>Dash</div>
     </AdminContext.Provider>
   );
