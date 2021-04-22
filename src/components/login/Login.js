@@ -33,7 +33,7 @@ export default function Login() {
         },
       });
     } else {
-      message.warning("Fill in all the fields");
+      message.warning("Fill in all the field");
     }
   };
 
