@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Drawer, Button, Radio, Space } from "antd";
-
+import "../../styles/Nav.css";
+import menu from "../../assets/icons/menu.png";
 export default function Nav() {
   const [visible, setvisible] = useState(false);
 
   const ToggelNav = () => setvisible(!visible);
 
   return (
-    <div>
-      <button onClick={ToggelNav}> clis</button>
+    <div className="NavBarRoot">
+      <button className="navBtn" onClick={ToggelNav}>
+        <img src={menu} width="8vh" />
+      </button>
       <Drawer
         title="DashBoard"
         placement={"left"}

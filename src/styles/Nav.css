@@ -1,0 +1,21 @@
+.NavBarRoot {
+  box-shadow: 2px 2px 2px 2px;
+  border-bottom-left-radius: 5pt;
+  border-bottom-right-radius: 5pt;
+  padding: 15pt;
+  position: absolute;
+  width: 100vw;
+  top: 0px;
+}
+
+.navBtn {
+  float: right;
+  background: none;
+  border: none;
+  outline: none;
+  transition: box-shadow 300ms ease-in-out 25ms;
+}
+
+.navBtn:hover {
+  box-shadow: 2px 2px 2px 2px #888888;
+}
