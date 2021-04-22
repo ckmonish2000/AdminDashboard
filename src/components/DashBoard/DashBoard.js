@@ -1,17 +1,15 @@
-import React from 'react'
-import {getPermissions,getRoles} from "../../services/queries"
-import {useQuery,useMutation} from "@apollo/client"
+import React from "react";
+import { getPermissions, getRoles } from "../../services/queries";
+import { useQuery, useMutation } from "@apollo/client";
 
-export const AdminContext=React.createContext()
+export const AdminContext = React.createContext();
 export default function DashBoard() {
-    let Roles=useQuery(getRoles)
-    let Permissions=useQuery(getPermissions)
+  let Roles = useQuery(getRoles);
+  let Permissions = useQuery(getPermissions);
 
-    return (
-    <AdminContext.Provider value={{ }}>
-    <div>
-        Dash
-    </div>
+  return (
+    <AdminContext.Provider value={{}}>
+      <div>Dash</div>
     </AdminContext.Provider>
-    )
+  );
 }

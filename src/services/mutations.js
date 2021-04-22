@@ -1,13 +1,12 @@
-import {gql} from "@apollo/client"
+import { gql } from "@apollo/client";
 
-let VerifyToken=gql`
-mutation auth($email:String,$password:String){
-    tokenAuth(email:$email,password:$password){
+let VerifyToken = gql`
+  mutation auth($email: String, $password: String) {
+    tokenAuth(email: $email, password: $password) {
       payload
       token
     }
   }
-`
+`;
 
-
-export {VerifyToken}
+export { VerifyToken };
