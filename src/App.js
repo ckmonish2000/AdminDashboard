@@ -7,7 +7,7 @@ export const AdminContext=React.createContext()
 
 function App() {
   let data=useQuery(getRoles)
-  console.log(data.error);
+  console.log(data);
   return (
     // <AdminContext.Provider value={{
       
