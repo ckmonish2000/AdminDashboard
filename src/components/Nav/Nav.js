@@ -10,7 +10,7 @@ export default function Nav() {
   return (
     <div className="NavBarRoot">
       <button className="navBtn" onClick={ToggelNav}>
-        <img src={menu} width="8vh" />
+        <img src={menu} width="4.5vh" />
       </button>
       <Drawer
         title="DashBoard"
