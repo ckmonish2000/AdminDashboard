@@ -27,9 +27,9 @@ export default function Nav() {
         visible={visible}
         key={"sha123"}
       >
-        <p>Manage Staff</p>
-        <p>Manage Roles</p>
-        <div className="signoutbtn" onClick={Signout}>
+        <p className="NavChild">Manage Staff</p>
+        <p className="NavChild">Manage Roles</p>
+        <div className="NavChild" onClick={Signout}>
           Sign Out
         </div>
       </Drawer>

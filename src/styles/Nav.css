@@ -19,13 +19,17 @@
 .navBtn:hover {
   box-shadow: 2px 2px 2px 2px #888888;
 }
-/* 
-.signoutbtn {
-  font-weight: bold;
-  position: absolute;
-  bottom: 20px;
-  background: rgba(36, 87, 216, 0.6);
-  padding: 10pt;
-  border-radius: 10pt;
-  color: white;
-} */
+
+.NavChild {
+  font-size: revert;
+  cursor: pointer;
+  transition: all 500ms ease-in-out 25ms;
+}
+
+.NavChild:hover {
+  color: #1b98f5;
+  font-weight: 600;
+  font-size: large;
+
+  padding: 8pt;
+}
