@@ -2,15 +2,23 @@ import React, { useState } from "react";
 import { Drawer, Button, Radio, Space } from "antd";
 import "../../styles/Nav.css";
 import menu from "../../assets/icons/menu.png";
+import { useHistory } from "react-router";
+
 export default function Nav() {
   const [visible, setvisible] = useState(false);
+  const history = useHistory();
 
   const ToggelNav = () => setvisible(!visible);
+
+  const Signout = () => {
+    localStorage.removeItem("token");
+    history.replace({ pathname: "/login" });
+  };
 
   return (
     <div className="NavBarRoot">
       <button className="navBtn" onClick={ToggelNav}>
-        <img src={menu} width="4.5vh" />
+        <img src={menu} style={{ width: "4.5vh" }} />
       </button>
       <Drawer
         title="DashBoard"
@@ -21,6 +29,9 @@ export default function Nav() {
       >
         <p>Manage Staff</p>
         <p>Manage Roles</p>
+        <div className="signoutbtn" onClick={Signout}>
+          Sign Out
+        </div>
       </Drawer>
     </div>
   );
