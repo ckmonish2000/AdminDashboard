@@ -1,6 +1,7 @@
 import React from "react";
 import { getPermissions, getRoles } from "../../services/queries";
 import { useQuery, useMutation } from "@apollo/client";
+import Nav from "../Nav/Nav";
 
 export const AdminContext = React.createContext();
 export default function DashBoard() {
@@ -13,7 +14,9 @@ export default function DashBoard() {
         Permissions,
       }}
     >
-      <div>Dash</div>
+      <div>
+        <Nav />
+      </div>
     </AdminContext.Provider>
   );
 }
