@@ -67,10 +67,11 @@ export default function Staffs() {
           loading={typeof AllusersData.data === "undefined"}
           columns={columns}
           dataSource={filterdata}
+          pagination={false}
         />
       </div>
 
-      <div>
+      <div className="usrBtnPos">
         <AddCircleIcon style={{ fontSize: "30pt" }} className="NewUserBtn" />
       </div>
     </div>
