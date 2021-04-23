@@ -26,11 +26,13 @@ export default function Login() {
           email: LoginFields.username,
           password: LoginFields.password,
         },
-      }).then((data) => {
-        let tkn = data.data.tokenAuth?.token;
-        localStorage.setItem("token", tkn);
-        history.push({ pathname: "/" });
-      });
+      })
+        .then((data) => {
+          let tkn = data.data.tokenAuth?.token;
+          localStorage.setItem("token", tkn);
+          history.push({ pathname: "/" });
+        })
+        .catch((er) => message.error("Enter a valid username and password"));
     } else {
       message.warning("Fill in all the fields");
     }
