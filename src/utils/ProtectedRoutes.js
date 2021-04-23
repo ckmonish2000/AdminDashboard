@@ -7,7 +7,7 @@ import { useQuery } from "@apollo/client";
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   let isSuperorNot = useQuery(isSuperUser);
   let token = localStorage.getItem("token");
-  isSuperorNot = isSuperorNot.data.me?.isSuperuser;
+  isSuperorNot = isSuperorNot.data?.me?.isSuperuser;
   console.log(isSuperorNot);
   if (token && isSuperorNot) {
     return (

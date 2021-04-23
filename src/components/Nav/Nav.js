@@ -15,6 +15,15 @@ export default function Nav() {
     history.replace({ pathname: "/login" });
   };
 
+  const Navigate = (name) => {
+    switch (name) {
+      case "staff": {
+        history.push({ pathname: "/staff" });
+        break;
+      }
+    }
+  };
+
   return (
     <div className="NavBarRoot">
       <button className="navBtn" onClick={ToggelNav}>
@@ -27,7 +36,9 @@ export default function Nav() {
         visible={visible}
         key={"sha123"}
       >
-        <p className="NavChild">Manage Staff</p>
+        <p className="NavChild" onClick={() => Navigate("staff")}>
+          Manage Staff
+        </p>
         <p className="NavChild">Manage Roles</p>
         <div className="NavChild" onClick={Signout}>
           Sign Out
