@@ -53,6 +53,8 @@ export default function AddStaffModal({ open, setopen, refresh }) {
           refresh();
         })
         .catch((err) => console.log(err));
+    } else {
+      message.warn("Please Dont leave any field empty");
     }
   };
 
