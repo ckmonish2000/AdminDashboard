@@ -27,4 +27,21 @@ let getRoles = gql`
   }
 `;
 
-export { getPermissions, getRoles, isSuperUser };
+let Allusers = gql`
+  query AllUsers {
+    allUsers {
+      id
+      name
+      email
+      phone
+      isStaff
+      isVendor
+      isSuperuser
+      userPermissions {
+        name
+        codename
+      }
+    }
+  }
+`;
+export { getPermissions, getRoles, isSuperUser, Allusers };
