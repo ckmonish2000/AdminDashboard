@@ -4,7 +4,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import Nav from "../Nav/Nav";
 import { Spin, Space, message } from "antd";
 import { Redirect } from "react-router";
-
+import "../../styles/Dashboard.css";
 export const AdminContext = React.createContext();
 export default function DashBoard() {
   let Roles = useQuery(getRoles);
@@ -12,11 +12,11 @@ export default function DashBoard() {
     fetchPolicy: "no-cache",
   });
   let Permissions = useQuery(getPermissions);
-  // isSuperorNot.data?.me?isSuperuser
+
   if (typeof isSuperorNot.data === "undefined") {
     return (
-      <div>
-        <Spin size="large" />
+      <div className="SpinnerDiv">
+        <Spin size="large" style={{ width: "100%" }} />
       </div>
     );
   } else {
