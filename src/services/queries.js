@@ -1,23 +1,30 @@
-import {gql} from "@apollo/client"
+import { gql } from "@apollo/client";
 
-
-let getPermissions=gql`
-query Premissions{
-    permissions{
+let getPermissions = gql`
+  query Premissions {
+    permissions {
       id
       name
       codename
     }
   }
-`
+`;
 
-let getRoles=gql`
-query getRoles{
-    roles{
-      name,
-      id,
+let isSuperUser = gql`
+  query isSuper {
+    me {
+      isSuperuser
     }
   }
-`
+`;
 
-export {getPermissions,getRoles}
+let getRoles = gql`
+  query getRoles {
+    roles {
+      name
+      id
+    }
+  }
+`;
+
+export { getPermissions, getRoles, isSuperUser };

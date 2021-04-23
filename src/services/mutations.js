@@ -9,4 +9,8 @@ let VerifyToken = gql`
   }
 `;
 
+// let CreateStaff = gql`
+// mutation createStaff($email:String,$name:String,password:$)
+// `;
+
 export { VerifyToken };
