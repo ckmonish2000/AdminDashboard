@@ -1,11 +1,11 @@
 .NavBarRoot {
   box-shadow: 2px 2px 2px 2px;
-  border-bottom-left-radius: 5pt;
-  border-bottom-right-radius: 5pt;
   padding: 15pt;
-  position: absolute;
-  width: 98.9vw;
+  position: fixed;
+  width: 100vw;
   top: 0px;
+  z-index: 1;
+  background: white;
 }
 
 .navBtn {

@@ -9,8 +9,16 @@ let VerifyToken = gql`
   }
 `;
 
+let DeleteStaffAc = gql`
+  mutation deleteAc($id: ID) {
+    deleteStaffAccount(id: $id) {
+      success
+    }
+  }
+`;
+
 // let CreateStaff = gql`
 // mutation createStaff($email:String,$name:String,password:$)
 // `;
 
-export { VerifyToken };
+export { VerifyToken, DeleteStaffAc };

@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Allusers } from "../../services/queries";
-import { useQuery } from "@apollo/client";
-import { Table } from "antd";
+import { useMutation, useQuery } from "@apollo/client";
+import { message, Table } from "antd";
 import Nav from "../Nav/Nav";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import "../../styles/Staffs.css";
+import { DeleteStaffAc } from "../../services/mutations";
+import AddStaffModal from "./AddStaffModal";
+
 export default function Staffs() {
   let AllusersData = useQuery(Allusers, { fetchPolicy: "no-cache" });
   let filterdata = AllusersData.data
     ? AllusersData.data?.allUsers?.filter((val) => val.name !== null)
     : [];
+  let [DeleteStaff, DeletedData] = useMutation(DeleteStaffAc);
+  const [open, setopen] = useState(false);
+
+  const HandleDelete = (id, name) => {
+    DeleteStaff({ variables: { id: id } }).then((val) => {
+      message.success(`Removed user ${name}`);
+      AllusersData.refetch();
+    });
+  };
+
   const columns = [
     {
       title: "Name",
@@ -50,8 +63,8 @@ export default function Staffs() {
       title: "Delete User",
       dataIndex: "id",
       key: "address",
-      render: (val) => (
-        <span>
+      render: (val, item) => (
+        <span onClick={() => HandleDelete(val, item.name)}>
           <DeleteIcon />
         </span>
       ),
@@ -61,18 +74,24 @@ export default function Staffs() {
   return (
     <div>
       <Nav />
-      <div>
+      <AddStaffModal open={open} setopen={setopen} />
+      <div className="TableParent">
         <Table
-          style={{ padding: "50pt", margin: "50pt auto" }}
+          style={{ padding: "35pt", margin: "50pt auto" }}
           loading={typeof AllusersData.data === "undefined"}
           columns={columns}
           dataSource={filterdata}
-          pagination={false}
+          pagination={{ pageSize: 5 }}
+          className="Stafftable"
         />
       </div>
 
       <div className="usrBtnPos">
-        <AddCircleIcon style={{ fontSize: "30pt" }} className="NewUserBtn" />
+        <AddCircleIcon
+          onClick={() => setopen(true)}
+          style={{ fontSize: "30pt" }}
+          className="NewUserBtn"
+        />
       </div>
     </div>
   );
