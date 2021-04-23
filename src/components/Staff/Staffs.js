@@ -2,6 +2,11 @@ import React from "react";
 import { Allusers } from "../../services/queries";
 import { useQuery } from "@apollo/client";
 import { Table } from "antd";
+import Nav from "../Nav/Nav";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import "../../styles/Staffs.css";
 export default function Staffs() {
   let AllusersData = useQuery(Allusers, { fetchPolicy: "no-cache" });
   let filterdata = AllusersData.data
@@ -23,19 +28,51 @@ export default function Staffs() {
       title: "Phone Number",
       dataIndex: "phone",
       key: "phone",
+      render: (val) => (val === "" ? <p>N/A</p> : <p>{val}</p>),
     },
     {
       title: "Staff",
       dataIndex: "isStaff",
       key: "address",
+      render: (val) => (val === true ? <p>True</p> : <p>False</p>),
+    },
+    {
+      title: "Edit",
+      dataIndex: "id",
+      key: "address",
+      render: (val) => (
+        <span>
+          <EditIcon />
+        </span>
+      ),
+    },
+    {
+      title: "Delete User",
+      dataIndex: "id",
+      key: "address",
+      render: (val) => (
+        <span>
+          <DeleteIcon />
+        </span>
+      ),
     },
   ];
 
   return (
-    <Table
-      loading={typeof AllusersData.data === "undefined"}
-      columns={columns}
-      dataSource={filterdata}
-    />
+    <div>
+      <Nav />
+      <div>
+        <Table
+          style={{ padding: "50pt", margin: "50pt auto" }}
+          loading={typeof AllusersData.data === "undefined"}
+          columns={columns}
+          dataSource={filterdata}
+        />
+      </div>
+
+      <div>
+        <AddCircleIcon style={{ fontSize: "30pt" }} className="NewUserBtn" />
+      </div>
+    </div>
   );
 }

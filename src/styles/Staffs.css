@@ -1,0 +1,12 @@
+.NewUserBtn {
+  float: right;
+  margin: 20pt;
+  box-shadow: 2px 2px 2px 2px;
+  border-radius: 60%;
+  color: #536dfe;
+  transition: box-shadow 500ms ease-in-out 55ms;
+}
+
+.NewUserBtn:hover {
+  box-shadow: 4px 4px 4px 2px;
+}
