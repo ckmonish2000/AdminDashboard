@@ -17,8 +17,26 @@ let DeleteStaffAc = gql`
   }
 `;
 
-// let CreateStaff = gql`
-// mutation createStaff($email:String,$name:String,password:$)
-// `;
+let CreateStaff = gql`
+  mutation createStaff(
+    $email: String
+    $name: String
+    $password: String
+    $phone: String
+    $role: String
+  ) {
+    createStaffAccount(
+      email: $email
+      name: $name
+      password: $password
+      phone: $phone
+      role: $role
+    ) {
+      user {
+        name
+      }
+    }
+  }
+`;
 
-export { VerifyToken, DeleteStaffAc };
+export { VerifyToken, DeleteStaffAc, CreateStaff };

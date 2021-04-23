@@ -11,7 +11,7 @@ import { DeleteStaffAc } from "../../services/mutations";
 import AddStaffModal from "./AddStaffModal";
 
 export default function Staffs() {
-  let AllusersData = useQuery(Allusers, { fetchPolicy: "no-cache" });
+  let AllusersData = useQuery(Allusers);
   let filterdata = AllusersData.data
     ? AllusersData.data?.allUsers?.filter((val) => val.name !== null)
     : [];
@@ -24,14 +24,13 @@ export default function Staffs() {
       AllusersData.refetch();
     });
   };
-
+  const refresh = () => AllusersData.refetch();
   const columns = [
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
       render: (val, item, index) => {
-        console.log(item);
         if (item.name !== null) {
           return <h1>{val}</h1>;
         }
@@ -74,7 +73,7 @@ export default function Staffs() {
   return (
     <div>
       <Nav />
-      <AddStaffModal open={open} setopen={setopen} />
+      <AddStaffModal open={open} setopen={setopen} refresh={refresh} />
       <div className="TableParent">
         <Table
           style={{ padding: "35pt", margin: "50pt auto" }}
