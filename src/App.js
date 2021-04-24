@@ -6,7 +6,7 @@ import Login from "./components/login/Login";
 import Staffs from "./components/Staff/Staffs";
 import { useQuery, useMutation } from "@apollo/client";
 import { getRoles, getPermissions } from "./services/queries";
-
+import Role from "./components/roles/Roles.js";
 export const AdminContext = React.createContext();
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
         <Switch>
           <Route path="/login" component={Login} />
           <ProtectedRoute path="/" exact component={DashBoard} />
+          <ProtectedRoute path="/roles" exact component={Role} />
           <ProtectedRoute path="/staff" component={Staffs} />
         </Switch>
       </main>
