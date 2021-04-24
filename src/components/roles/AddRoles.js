@@ -2,19 +2,21 @@ import { Input, message, Modal, Select, Tag } from "antd";
 import React, { useContext, useState, useEffect } from "react";
 import { AdminContext } from "../../App";
 import { field } from "../Staff/styles";
-import { createRole } from "../../services/mutations";
+import { createRole, UpdateRole } from "../../services/mutations";
 import { useMutation } from "@apollo/client";
 import { Message } from "@material-ui/icons";
 import tagRender from "./tagrender";
 
 export default function AddRoles({ open, setOpen, refresh, Edit, setEdit }) {
   let [CreateRoleMutation, CreatedRoleData] = useMutation(createRole);
+  let [UpdateRoleMutation, UpdatedData] = useMutation(UpdateRole);
   const { Permissions } = useContext(AdminContext);
   const [permissions, setpermissions] = useState([]);
   const [roletitle, setroletitle] = useState("");
-
+  console.log(permissions);
   useEffect(() => {
     if (Edit.edit && permissions.length === 0) {
+      setroletitle(Edit.selected?.name);
       setpermissions(Edit.selected?.permissions?.map((val) => val?.codename));
     }
   }, [Edit]);
@@ -48,19 +50,33 @@ export default function AddRoles({ open, setOpen, refresh, Edit, setEdit }) {
       message.error("please fill in the required details");
     }
   };
-
+  console.log(Edit);
+  let HandleEdit = () => {
+    if (roletitle !== "" && permissions.length !== 0) {
+      UpdateRoleMutation({
+        variables: {
+          name: roletitle,
+          permission: permissions,
+          id: Edit?.selected?.id,
+        },
+      })
+        .then((data) => {
+          setEdit({ ...Edit, edit: false });
+          message.success("Altered role");
+          refresh();
+          oncancel();
+        })
+        .catch((err) => console.log(err));
+    } else {
+      message.error("please fill in the required details");
+    }
+  };
   return (
     <Modal
       onCancel={oncancel}
       visible={open}
       title={Edit.edit ? "Edit Role" : "Add Role"}
-      onOk={
-        Edit.edit
-          ? () => {
-              console.log("in editmode");
-            }
-          : handleOk
-      }
+      onOk={Edit.edit ? HandleEdit : handleOk}
     >
       <Input
         value={roletitle}

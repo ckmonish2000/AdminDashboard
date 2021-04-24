@@ -80,6 +80,14 @@ let DeleteRole = gql`
   }
 `;
 
+let UpdateRole = gql`
+  mutation UpdateRole($id: ID, $name: String, $permission: [String]) {
+    updateRole(id: $id, name: $name, permissionCodes: $permission) {
+      success
+    }
+  }
+`;
+
 export {
   VerifyToken,
   DeleteStaffAc,
@@ -87,4 +95,5 @@ export {
   UpdateStaff,
   createRole,
   DeleteRole,
+  UpdateRole,
 };
