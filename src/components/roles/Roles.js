@@ -14,6 +14,7 @@ let Role = () => {
   let { Roles } = useContext(AdminContext);
   const [Open, setOpen] = useState(false);
   let [DeleteRoles, DeletedData] = useMutation(DeleteRole);
+  const [Edit, setEdit] = useState({ edit: false, selected: {} });
   const refresh = () => Roles.refetch();
 
   const HandleDelete = (e, name) => {
@@ -38,10 +39,13 @@ let Role = () => {
       key: "address",
       render: (val, item) => (
         <span
-        //   onClick={() => {
-        //     setopenEdit(true);
-        //     setselected(item);
-        //   }}
+          onClick={() => {
+            setOpen(true);
+            setEdit({
+              edit: true,
+              selected: item,
+            });
+          }}
         >
           <EditIcon className="editicon" />
         </span>
@@ -62,7 +66,13 @@ let Role = () => {
   return (
     <div>
       <Nav />
-      <AddRoles open={Open} setOpen={setOpen} refresh={refresh} />
+      <AddRoles
+        open={Open}
+        setOpen={setOpen}
+        refresh={refresh}
+        Edit={Edit}
+        setEdit={setEdit}
+      />
       <div className="TableParent">
         <Table
           loading={typeof Roles.data === "undefined"}

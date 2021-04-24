@@ -23,6 +23,10 @@ let getRoles = gql`
     roles {
       name
       id
+      permissions {
+        name
+        codename
+      }
     }
   }
 `;

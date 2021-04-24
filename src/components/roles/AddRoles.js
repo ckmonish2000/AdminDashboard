@@ -6,11 +6,12 @@ import { createRole } from "../../services/mutations";
 import { useMutation } from "@apollo/client";
 import { Message } from "@material-ui/icons";
 
-export default function AddRoles({ open, setOpen, refresh }) {
+export default function AddRoles({ open, setOpen, refresh, Edit, setEdit }) {
   let [CreateRoleMutation, CreatedRoleData] = useMutation(createRole);
   const { Permissions } = useContext(AdminContext);
   const [permissions, setpermissions] = useState([]);
   const [roletitle, setroletitle] = useState("");
+  console.log(Edit);
   function tagRender(props) {
     // console.log(props);
     const { label, value, closable, onClose } = props;
@@ -35,6 +36,7 @@ export default function AddRoles({ open, setOpen, refresh }) {
 
   let oncancel = () => {
     setOpen(false);
+    setEdit({ ...Edit, edit: false });
     setpermissions([]);
   };
 
@@ -44,6 +46,7 @@ export default function AddRoles({ open, setOpen, refresh }) {
         variables: { name: roletitle, permission: permissions },
       })
         .then((data) => {
+          setEdit({ ...Edit, edit: false });
           message.success("created role");
           refresh();
           oncancel();
@@ -55,7 +58,18 @@ export default function AddRoles({ open, setOpen, refresh }) {
   };
 
   return (
-    <Modal onCancel={oncancel} visible={open} title="Add Role" onOk={handleOk}>
+    <Modal
+      onCancel={oncancel}
+      visible={open}
+      title="Add Role"
+      onOk={
+        Edit.edit
+          ? () => {
+              console.log("in editmode");
+            }
+          : handleOk
+      }
+    >
       <Input
         value={roletitle}
         style={field}
