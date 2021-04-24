@@ -63,4 +63,12 @@ const UpdateStaff = gql`
     }
   }
 `;
-export { VerifyToken, DeleteStaffAc, CreateStaff, UpdateStaff };
+
+let createRole = gql`
+  mutation createrole($name: String, $permission: [String]) {
+    createRole(name: $name, permissionCodes: $permission) {
+      success
+    }
+  }
+`;
+export { VerifyToken, DeleteStaffAc, CreateStaff, UpdateStaff, createRole };

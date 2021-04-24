@@ -5,14 +5,16 @@ import { Table, Tooltip } from "antd";
 import { TableStyle } from "../Staff/styles";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Rolecolumns from "./Rolecolumns";
+import AddRoles from "./AddRoles";
 
 let Role = () => {
-  let { Roles, Permissions } = useContext(AdminContext);
-  console.log(Roles, Permissions);
-
+  let { Roles } = useContext(AdminContext);
+  const [Open, setOpen] = useState(false);
+  const refresh = () => Roles.refetch();
   return (
     <div>
       <Nav />
+      <AddRoles open={Open} setOpen={setOpen} refresh={refresh} />
       <div className="TableParent">
         <Table
           loading={typeof Roles.data === "undefined"}
@@ -30,7 +32,7 @@ let Role = () => {
       <Tooltip title="Add New Role">
         <div className="usrBtnPos">
           <AddCircleIcon
-            // onClick={() => setopen(true)}
+            onClick={() => setOpen(true)}
             style={{ fontSize: "30pt" }}
             className="NewUserBtn"
           />

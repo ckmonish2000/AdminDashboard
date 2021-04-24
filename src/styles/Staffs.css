@@ -57,3 +57,10 @@
   color: grey;
   cursor: pointer;
 }
+
+/* .selectPermissions */
+.ant-select-show-search.ant-select:not(.ant-select-customize-input)
+  .ant-select-selector {
+  padding: 6.5pt;
+  border-radius: 10pt;
+}
