@@ -71,4 +71,20 @@ let createRole = gql`
     }
   }
 `;
-export { VerifyToken, DeleteStaffAc, CreateStaff, UpdateStaff, createRole };
+
+let DeleteRole = gql`
+  mutation deleteRole($id: ID) {
+    deleteRole(id: $id) {
+      success
+    }
+  }
+`;
+
+export {
+  VerifyToken,
+  DeleteStaffAc,
+  CreateStaff,
+  UpdateStaff,
+  createRole,
+  DeleteRole,
+};

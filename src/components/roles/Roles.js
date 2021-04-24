@@ -4,13 +4,61 @@ import { AdminContext } from "../../App";
 import { Table, Tooltip } from "antd";
 import { TableStyle } from "../Staff/styles";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import Rolecolumns from "./Rolecolumns";
 import AddRoles from "./AddRoles";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import { DeleteRole } from "../../services/mutations";
+import { useMutation } from "@apollo/client";
 
 let Role = () => {
   let { Roles } = useContext(AdminContext);
   const [Open, setOpen] = useState(false);
+  let [DeleteRoles, DeletedData] = useMutation(DeleteRole);
   const refresh = () => Roles.refetch();
+
+  const HandleDelete = (e, name) => {
+    DeleteRoles({ variables: { id: e } });
+    refresh();
+  };
+
+  const Rolecolumns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      render: (val, item, index) => {
+        if (item.name !== null) {
+          return val;
+        }
+      },
+    },
+    {
+      title: "Edit",
+      dataIndex: "id",
+      key: "address",
+      render: (val, item) => (
+        <span
+        //   onClick={() => {
+        //     setopenEdit(true);
+        //     setselected(item);
+        //   }}
+        >
+          <EditIcon className="editicon" />
+        </span>
+      ),
+    },
+    {
+      title: "Remove Staff",
+      dataIndex: "id",
+      key: "address",
+      render: (val, item) => (
+        <span onClick={() => HandleDelete(val, item.name)}>
+          <DeleteIcon className="delicon" />
+        </span>
+      ),
+    },
+  ];
+
   return (
     <div>
       <Nav />
