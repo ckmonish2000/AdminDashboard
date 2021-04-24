@@ -13,7 +13,7 @@ export default function AddRoles({ open, setOpen, refresh, Edit, setEdit }) {
   const { Permissions } = useContext(AdminContext);
   const [permissions, setpermissions] = useState([]);
   const [roletitle, setroletitle] = useState("");
-  console.log(permissions);
+
   useEffect(() => {
     if (Edit.edit && permissions.length === 0) {
       setroletitle(Edit.selected?.name);
@@ -50,9 +50,10 @@ export default function AddRoles({ open, setOpen, refresh, Edit, setEdit }) {
       message.error("please fill in the required details");
     }
   };
-  console.log(Edit);
+
   let HandleEdit = () => {
     if (roletitle !== "" && permissions.length !== 0) {
+      console.log(permissions);
       UpdateRoleMutation({
         variables: {
           name: roletitle,
