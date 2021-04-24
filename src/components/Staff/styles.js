@@ -8,7 +8,7 @@ let field2 = {
 };
 
 let TableStyle = {
-  boxShadow: "2px 2px 20px 5px",
+  boxShadow: "2px 2px 14px 3px grey",
   padding: "10px",
   borderEadius: "20pt",
   paddingTop: "25pt",

@@ -1,14 +1,13 @@
 .NewUserBtn {
   float: right;
   margin: 20pt;
-  box-shadow: 2px 2px 2px 2px;
+  box-shadow: 2px 2px 19px -4px;
   border-radius: 60%;
-  color: #536dfe;
-  transition: box-shadow 500ms ease-in-out 55ms;
+  color: white;
 }
 
 .NewUserBtn:hover {
-  box-shadow: 4px 4px 4px 2px;
+  box-shadow: 2px 2px 34px 6px;
 }
 
 .usrBtnPos {
