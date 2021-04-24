@@ -63,7 +63,7 @@ export default function Staffs() {
             setselected(item);
           }}
         >
-          <EditIcon />
+          <EditIcon className="editicon" />
         </span>
       ),
     },
@@ -73,7 +73,7 @@ export default function Staffs() {
       key: "address",
       render: (val, item) => (
         <span onClick={() => HandleDelete(val, item.name)}>
-          <DeleteIcon />
+          <DeleteIcon className="delicon" />
         </span>
       ),
     },
