@@ -10,6 +10,7 @@ import "../../styles/Staffs.css";
 import { DeleteStaffAc } from "../../services/mutations";
 import AddStaffModal from "./AddStaffModal";
 import EditStaff from "./EditStaff";
+import { TableStyle } from "./styles";
 
 export default function Staffs() {
   let AllusersData = useQuery(Allusers);
@@ -35,7 +36,7 @@ export default function Staffs() {
       key: "name",
       render: (val, item, index) => {
         if (item.name !== null) {
-          return <h1>{val}</h1>;
+          return val;
         }
       },
     },
@@ -67,7 +68,7 @@ export default function Staffs() {
       ),
     },
     {
-      title: "Delete User",
+      title: "Remove Staff",
       dataIndex: "id",
       key: "address",
       render: (val, item) => (
@@ -90,14 +91,17 @@ export default function Staffs() {
       />
       <AddStaffModal open={open} setopen={setopen} refresh={refresh} />
       <div className="TableParent">
-        <h1>Manage Staff</h1>
         <Table
-          style={{ padding: "35pt", margin: "50pt auto" }}
           loading={typeof AllusersData.data === "undefined"}
           columns={columns}
           dataSource={filterdata}
           pagination={{ pageSize: 5 }}
           className="Stafftable"
+          rowClassName="testRow"
+          title={() => <h1 style={{ color: "white" }}>Manage Staff</h1>}
+          scroll={true}
+          style={TableStyle}
+          tableLayout={"auto"}
         />
       </div>
       <div className="usrBtnPos">

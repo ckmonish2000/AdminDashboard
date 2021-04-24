@@ -6,4 +6,14 @@ let field2 = {
   outline: "none",
   borderColor: "#d9d9d9",
 };
-export { field, field2 };
+
+let TableStyle = {
+  boxShadow: "2px 2px 20px 5px",
+  padding: "10px",
+  borderEadius: "20pt",
+  paddingTop: "25pt",
+  paddingBottom: "25pt",
+  background: "#28282b",
+  borderRadius: "30pt",
+};
+export { field, field2, TableStyle };
