@@ -1,5 +1,5 @@
 import { Input, message, Modal, Select, Tag } from "antd";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AdminContext } from "../../App";
 import { field } from "../Staff/styles";
 import { createRole } from "../../services/mutations";
@@ -11,7 +11,13 @@ export default function AddRoles({ open, setOpen, refresh, Edit, setEdit }) {
   const { Permissions } = useContext(AdminContext);
   const [permissions, setpermissions] = useState([]);
   const [roletitle, setroletitle] = useState("");
-  console.log(Edit);
+  console.log(permissions, Edit);
+  useEffect(() => {
+    if (Edit.edit && permissions.length === 0) {
+      setpermissions(Edit.selected?.permissions?.map((val) => val?.codename));
+    }
+  }, [Edit]);
+
   function tagRender(props) {
     // console.log(props);
     const { label, value, closable, onClose } = props;
@@ -61,7 +67,7 @@ export default function AddRoles({ open, setOpen, refresh, Edit, setEdit }) {
     <Modal
       onCancel={oncancel}
       visible={open}
-      title="Add Role"
+      title={Edit.edit ? "Edit Role" : "Add Role"}
       onOk={
         Edit.edit
           ? () => {
