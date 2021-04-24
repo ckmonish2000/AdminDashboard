@@ -1,58 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
 import Nav from "../Nav/Nav";
 import { AdminContext } from "../../App";
-import { Table } from "antd";
+import { Table, Tooltip } from "antd";
 import { TableStyle } from "../Staff/styles";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import Rolecolumns from "./Rolecolumns";
+
 let Role = () => {
   let { Roles, Permissions } = useContext(AdminContext);
   console.log(Roles, Permissions);
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      render: (val, item, index) => {
-        if (item.name !== null) {
-          return val;
-        }
-      },
-    },
-    {
-      title: "Edit",
-      dataIndex: "id",
-      key: "address",
-      render: (val, item) => (
-        <span
-        //   onClick={() => {
-        //     setopenEdit(true);
-        //     setselected(item);
-        //   }}
-        >
-          <EditIcon className="editicon" />
-        </span>
-      ),
-    },
-    {
-      title: "Remove Staff",
-      dataIndex: "id",
-      key: "address",
-      render: (val, item) => (
-        // onClick={() => HandleDelete(val, item.name)}
-        <span>
-          <DeleteIcon className="delicon" />
-        </span>
-      ),
-    },
-  ];
+
   return (
     <div>
       <Nav />
       <div className="TableParent">
         <Table
           loading={typeof Roles.data === "undefined"}
-          columns={columns}
+          columns={Rolecolumns}
           dataSource={Roles.data?.roles}
           //   pagination={{ pageSize: 5 }}
           className="Stafftable"
@@ -63,6 +27,15 @@ let Role = () => {
           tableLayout={"auto"}
         />
       </div>
+      <Tooltip title="Add New Role">
+        <div className="usrBtnPos">
+          <AddCircleIcon
+            // onClick={() => setopen(true)}
+            style={{ fontSize: "30pt" }}
+            className="NewUserBtn"
+          />
+        </div>
+      </Tooltip>
     </div>
   );
 };
