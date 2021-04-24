@@ -5,34 +5,20 @@ import { field } from "../Staff/styles";
 import { createRole } from "../../services/mutations";
 import { useMutation } from "@apollo/client";
 import { Message } from "@material-ui/icons";
+import tagRender from "./tagrender";
 
 export default function AddRoles({ open, setOpen, refresh, Edit, setEdit }) {
   let [CreateRoleMutation, CreatedRoleData] = useMutation(createRole);
   const { Permissions } = useContext(AdminContext);
   const [permissions, setpermissions] = useState([]);
   const [roletitle, setroletitle] = useState("");
-  console.log(permissions, Edit);
+
   useEffect(() => {
     if (Edit.edit && permissions.length === 0) {
       setpermissions(Edit.selected?.permissions?.map((val) => val?.codename));
     }
   }, [Edit]);
 
-  function tagRender(props) {
-    // console.log(props);
-    const { label, value, closable, onClose } = props;
-
-    return (
-      <Tag
-        color="gold"
-        closable={closable}
-        onClose={onClose}
-        style={{ marginRight: 3 }}
-      >
-        {label}
-      </Tag>
-    );
-  }
   const options = Permissions.data?.permissions?.map((val) => {
     return {
       value: val?.codename,
