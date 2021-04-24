@@ -37,9 +37,9 @@ let Allusers = gql`
       isStaff
       isVendor
       isSuperuser
-      userPermissions {
+      groups {
         name
-        codename
+        id
       }
     }
   }

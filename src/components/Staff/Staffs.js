@@ -9,6 +9,7 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import "../../styles/Staffs.css";
 import { DeleteStaffAc } from "../../services/mutations";
 import AddStaffModal from "./AddStaffModal";
+import EditStaff from "./EditStaff";
 
 export default function Staffs() {
   let AllusersData = useQuery(Allusers);
@@ -17,6 +18,8 @@ export default function Staffs() {
     : [];
   let [DeleteStaff, DeletedData] = useMutation(DeleteStaffAc);
   const [open, setopen] = useState(false);
+  const [openEdit, setopenEdit] = useState(false);
+  const [selected, setselected] = useState({});
 
   const HandleDelete = (id, name) => {
     DeleteStaff({ variables: { id: id } }).then((val) => {
@@ -52,8 +55,13 @@ export default function Staffs() {
       title: "Edit",
       dataIndex: "id",
       key: "address",
-      render: (val) => (
-        <span>
+      render: (val, item) => (
+        <span
+          onClick={() => {
+            setopenEdit(true);
+            setselected(item);
+          }}
+        >
           <EditIcon />
         </span>
       ),
@@ -73,8 +81,16 @@ export default function Staffs() {
   return (
     <div>
       <Nav />
+      <br />
+      <EditStaff
+        data={selected}
+        openEdit={openEdit}
+        setopenEdit={setopenEdit}
+        refresh={refresh}
+      />
       <AddStaffModal open={open} setopen={setopen} refresh={refresh} />
       <div className="TableParent">
+        <h1>Manage Staff</h1>
         <Table
           style={{ padding: "35pt", margin: "50pt auto" }}
           loading={typeof AllusersData.data === "undefined"}
@@ -84,7 +100,6 @@ export default function Staffs() {
           className="Stafftable"
         />
       </div>
-
       <div className="usrBtnPos">
         <AddCircleIcon
           onClick={() => setopen(true)}

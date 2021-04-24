@@ -39,4 +39,28 @@ let CreateStaff = gql`
   }
 `;
 
-export { VerifyToken, DeleteStaffAc, CreateStaff };
+const UpdateStaff = gql`
+  mutation updatestaffcreateStaff(
+    $email: String
+    $name: String
+    $password: String
+    $phone: String
+    $role: String
+    $id: ID
+  ) {
+    updateStaffAccount(
+      email: $email
+      name: $name
+      password: $password
+      phone: $phone
+      role: $role
+      id: $id
+    ) {
+      user {
+        id
+        name
+      }
+    }
+  }
+`;
+export { VerifyToken, DeleteStaffAc, CreateStaff, UpdateStaff };
