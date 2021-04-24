@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Allusers } from "../../services/queries";
 import { useMutation, useQuery } from "@apollo/client";
-import { message, Table } from "antd";
+import { message, Table, Tooltip } from "antd";
 import Nav from "../Nav/Nav";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -104,13 +104,15 @@ export default function Staffs() {
           tableLayout={"auto"}
         />
       </div>
-      <div className="usrBtnPos">
-        <AddCircleIcon
-          onClick={() => setopen(true)}
-          style={{ fontSize: "30pt" }}
-          className="NewUserBtn"
-        />
-      </div>
+      <Tooltip title="Add New Staff">
+        <div className="usrBtnPos">
+          <AddCircleIcon
+            onClick={() => setopen(true)}
+            style={{ fontSize: "30pt" }}
+            className="NewUserBtn"
+          />
+        </div>
+      </Tooltip>
     </div>
   );
 }
