@@ -25,6 +25,10 @@ export default function Nav() {
         history.push({ pathname: "/roles" });
         break;
       }
+      case "restaurants": {
+        history.push({ pathname: "/restaurants" });
+        break;
+      }
     }
   };
 
@@ -45,6 +49,9 @@ export default function Nav() {
         </p>
         <p className="NavChild" onClick={() => Navigate("roles")}>
           Manage Roles
+        </p>
+        <p className="NavChild" onClick={() => Navigate("restaurants")}>
+          Manage Restaurants
         </p>
         <div className="NavChild" onClick={Signout}>
           Sign Out
