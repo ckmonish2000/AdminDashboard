@@ -14,8 +14,6 @@ export default function TimingModal({ Open, setOpen }) {
     { fromTime: "00:00:00", toTime: "00:00:00", weekday: "saturday" },
   ]);
 
-  console.log(Timing, "tming");
-
   const [InputField, setInputField] = useState([
     <DateSelector
       counter={0}
@@ -25,33 +23,47 @@ export default function TimingModal({ Open, setOpen }) {
     />,
   ]);
 
+  const AddDayField = () => {
+    if (InputField.length <= 6) {
+      setInputField([
+        ...InputField,
+        <DateSelector
+          data={Timing.length !== 0 ? Timing[Counter] : {}}
+          Timing={Timing}
+          setTiming={setTiming}
+          counter={Counter}
+        />,
+      ]);
+      setCounter(Counter + 1);
+    } else {
+      message.warn("cant add anymore");
+    }
+  };
+  const reset = () => {
+    closeModal(setOpen);
+    setInputField([
+      <DateSelector
+        counter={0}
+        data={Timing[Counter]}
+        Timing={Timing}
+        setTiming={setTiming}
+      />,
+    ]);
+    setCounter(1);
+    setTiming([
+      { fromTime: "00:00:00", toTime: "00:00:00", weekday: "sunday" },
+      { fromTime: "00:00:00", toTime: "00:00:00", weekday: "monday" },
+      { fromTime: "00:00:00", toTime: "00:00:00", weekday: "tuesday" },
+      { fromTime: "00:00:00", toTime: "00:00:00", weekday: "wednesday" },
+      { fromTime: "00:00:00", toTime: "00:00:00", weekday: "thursday" },
+      { fromTime: "00:00:00", toTime: "00:00:00", weekday: "friday" },
+      { fromTime: "00:00:00", toTime: "00:00:00", weekday: "saturday" },
+    ]);
+  };
   return (
-    <Modal
-      visible={Open}
-      title="Add Timings"
-      onCancel={() => closeModal(setOpen)}
-    >
+    <Modal visible={Open} title="Add Timings" onCancel={reset}>
       {InputField}
-      <button
-        onClick={() => {
-          if (InputField.length <= 6) {
-            setInputField([
-              ...InputField,
-              <DateSelector
-                data={Timing.length !== 0 ? Timing[Counter] : {}}
-                Timing={Timing}
-                setTiming={setTiming}
-                counter={Counter}
-              />,
-            ]);
-            setCounter(Counter + 1);
-          } else {
-            message.warn("cant add anymore");
-          }
-        }}
-      >
-        Add Day
-      </button>
+      <button onClick={AddDayField}>Add Day</button>
     </Modal>
   );
 }
