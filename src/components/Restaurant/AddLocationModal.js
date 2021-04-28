@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Modal } from "antd";
 import MapPicker from "react-google-map-picker";
+import { closeModal } from "./EventHandlers";
 const DefaultLocation = { lat: 11, lng: 79 };
 const DefaultZoom = 10;
 
 export default function AddLocation({ Open, setOpen, Data, setData }) {
-  const closeModal = () => {
-    setOpen(false);
-  };
   const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
 
   const [location, setLocation] = useState(defaultLocation);
@@ -27,7 +25,12 @@ export default function AddLocation({ Open, setOpen, Data, setData }) {
     setZoom(DefaultZoom);
   }
   return (
-    <Modal onCancel={closeModal} title="Add Location" visible={Open}>
+    <Modal
+      onCancel={() => closeModal(setOpen)}
+      onOk={() => closeModal(setOpen)}
+      title="Add Location"
+      visible={Open}
+    >
       <div style={{ height: "50vh", overflow: "hidden" }}>
         <MapPicker
           defaultLocation={defaultLocation}

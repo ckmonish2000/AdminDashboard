@@ -29,4 +29,36 @@ const CreateRestaurant = (CreateRest) => {
     .catch((err) => console.log(err));
 };
 
-export { CreateRestaurant };
+const closeModal = (setOpen) => {
+  setOpen(false);
+};
+
+const Day = (idx) => {
+  switch (idx) {
+    case 1:
+      return "Mon";
+      break;
+    case 2:
+      return "Tue";
+      break;
+    case 3:
+      return "Wed";
+      break;
+    case 4:
+      return "Thu";
+      break;
+    case 5:
+      return "Fri";
+      break;
+    case 6:
+      return "Sat";
+      break;
+    case 0:
+      return "Sun";
+      break;
+    default:
+      break;
+  }
+};
+
+export { CreateRestaurant, closeModal, Day };
