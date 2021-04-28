@@ -18,7 +18,7 @@ export default function DashBoard() {
       </div>
     );
   } else {
-    if (isSuperorNot.data?.me?.isSuperuser) {
+    if (!isSuperorNot.data?.me?.isSuperuser) {
       return (
         <div>
           <Nav />

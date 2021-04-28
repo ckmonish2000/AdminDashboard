@@ -33,7 +33,10 @@ export default function Login() {
           localStorage.setItem("token", tkn);
           history.push({ pathname: "/" });
         })
-        .catch((er) => message.error("Enter a valid username and password"));
+        .catch((er) => {
+          console.log(er);
+          message.error("Enter a valid username and password");
+        });
     } else {
       message.warning("Fill in all the fields");
     }
