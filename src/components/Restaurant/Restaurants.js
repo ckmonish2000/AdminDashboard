@@ -9,18 +9,7 @@ import { CreateRestaurant } from "./EventHandlers";
 
 export default function Restaurants() {
   const [CreateRest, createdRestdata] = useMutation(createRestaurant);
-  // $add: String!
-  // $category: [RestaurantCatEnum]
-  // $contact: String!
-  // $lat: String!
-  // $long: String!
-  // $name: String!
-  // $type: [RestaurantTypeEnum]
-  // $timing: [TimingInput]
-  // $traffic: [RestaurantTrafficInput]
-
   const [Open, setOpen] = useState(false);
-  const [RestModalParams, setRestModalParams] = useState({});
   // CreateRestaurant(CreateRest)
   return (
     <div>

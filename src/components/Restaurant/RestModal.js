@@ -1,40 +1,33 @@
+import { Button, Modal } from "antd";
 import React, { useState } from "react";
-import { Modal } from "antd";
-import MapPicker from "react-google-map-picker";
-const DefaultLocation = { lat: 10, lng: 106 };
-const DefaultZoom = 10;
+import AddLocation from "./AddLocationModal";
 
 export default function RestModal({ Open, setOpen }) {
+  const [RestModalParams, setRestModalParams] = useState({
+    add: "",
+    category: [],
+    contact: "",
+    lat: 11,
+    long: 79,
+    name: "",
+    type: [],
+    timing: [],
+    traffic: [],
+  });
+  console.log(RestModalParams);
   const closeModal = () => {
     setOpen(false);
   };
-  const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
-
-  const [location, setLocation] = useState(defaultLocation);
-  const [zoom, setZoom] = useState(DefaultZoom);
-
-  function handleChangeLocation(lat, lng) {
-    setLocation({ lat: lat, lng: lng });
-  }
-
-  function handleChangeZoom(newZoom) {
-    setZoom(newZoom);
-  }
-
-  function handleResetLocation() {
-    setDefaultLocation({ ...DefaultLocation });
-    setZoom(DefaultZoom);
-  }
+  const [OpenLocation, setOpenLocation] = useState(false);
   return (
-    <Modal onCancel={closeModal} title="Add Restaurant" visible={Open}>
-      <MapPicker
-        defaultLocation={defaultLocation}
-        zoom={zoom}
-        style={{ height: "700px" }}
-        onChangeLocation={handleChangeLocation}
-        onChangeZoom={handleChangeZoom}
-        apiKey="AIzaSyD07E1VvpsN_0FvsmKAj4nK9GnLq-9jtj8"
+    <Modal visible={Open} onCancel={closeModal} title="Add restaurant">
+      <AddLocation
+        Open={OpenLocation}
+        setOpen={setOpenLocation}
+        Data={RestModalParams}
+        setData={setRestModalParams}
       />
+      <Button onClick={() => setOpenLocation(true)}>Add Location</Button>
     </Modal>
   );
 }
