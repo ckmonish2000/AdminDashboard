@@ -88,6 +88,34 @@ let UpdateRole = gql`
   }
 `;
 
+let createRestaurant = gql`
+  mutation test2(
+    $add: String!
+    $category: [RestaurantCatEnum]
+    $contact: String!
+    $lat: String!
+    $long: String!
+    $name: String!
+    $type: [RestaurantTypeEnum]
+    $timing: [TimingInput]
+    $traffic: [RestaurantTrafficInput]
+  ) {
+    createRest(
+      restAddress: $add
+      restCategory: $category
+      restContact: $contact
+      restLatitude: $lat
+      restLongitude: $long
+      traffic: $traffic
+      timings: $timing
+      restName: $name
+      restType: $type
+    ) {
+      success
+    }
+  }
+`;
+
 export {
   VerifyToken,
   DeleteStaffAc,
@@ -96,4 +124,5 @@ export {
   createRole,
   DeleteRole,
   UpdateRole,
+  createRestaurant,
 };

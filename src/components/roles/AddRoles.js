@@ -13,7 +13,7 @@ export default function AddRoles({ open, setOpen, refresh, Edit, setEdit }) {
   const { Permissions } = useContext(AdminContext);
   const [permissions, setpermissions] = useState([]);
   const [roletitle, setroletitle] = useState("");
-
+  console.log(Permissions);
   useEffect(() => {
     if (Edit.edit && permissions.length === 0) {
       setroletitle(Edit.selected?.name);

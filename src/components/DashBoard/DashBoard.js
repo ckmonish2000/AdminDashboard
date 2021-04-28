@@ -10,7 +10,7 @@ export default function DashBoard() {
   let isSuperorNot = useQuery(isSuperUser, {
     fetchPolicy: "no-cache",
   });
-
+  console.log(isSuperorNot);
   if (typeof isSuperorNot.data === "undefined") {
     return (
       <div className="SpinnerDiv">
@@ -18,7 +18,7 @@ export default function DashBoard() {
       </div>
     );
   } else {
-    if (!isSuperorNot.data?.me?.isSuperuser) {
+    if (isSuperorNot.data?.me?.isSuperuser) {
       return (
         <div>
           <Nav />
