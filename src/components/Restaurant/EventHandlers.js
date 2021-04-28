@@ -35,25 +35,25 @@ const closeModal = (setOpen) => {
 
 const Day = (idx) => {
   switch (idx) {
-    case 2:
+    case 1:
       return "Mon";
       break;
-    case 3:
+    case 2:
       return "Tue";
       break;
-    case 4:
+    case 3:
       return "Wed";
       break;
-    case 5:
+    case 4:
       return "Thu";
       break;
-    case 6:
+    case 5:
       return "Fri";
       break;
-    case 7:
+    case 6:
       return "Sat";
       break;
-    case 1:
+    case 0:
       return "Sun";
       break;
     default:

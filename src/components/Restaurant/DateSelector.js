@@ -2,17 +2,16 @@ import { Button, Input, TimePicker } from "antd";
 import React from "react";
 import { Day } from "./EventHandlers";
 export default function DateSelector({ counter, Timing, setTiming, data }) {
-  const setFromTime = (e, counter) => {
-    setTiming({
-      ...Timing,
-      [counter]: { ...Timing[counter], fromTime: "e" },
-    });
-  };
-  const setToTime = (e, counter) => {
-    setTiming({
-      ...Timing,
-      [counter]: { forTime: Timing[counter]?.fromTime, toTime: "e" },
-    });
+  const setTime = (e, type) => {
+    if (type === "from") {
+      let tm = Timing;
+      tm[counter].fromTime = e;
+      setTiming(tm);
+    } else {
+      let tm = Timing;
+      tm[counter].toTime = e;
+      setTiming(tm);
+    }
   };
 
   return (
@@ -35,7 +34,7 @@ export default function DateSelector({ counter, Timing, setTiming, data }) {
       >
         <TimePicker
           placeholder="From Time"
-          onOk={setFromTime}
+          onChange={(e) => setTime(e, "from")}
           name={`day-${counter}`}
           style={{
             width: "80%",
@@ -45,7 +44,7 @@ export default function DateSelector({ counter, Timing, setTiming, data }) {
         />
         <TimePicker
           placeholder="To Time"
-          onChange={setToTime}
+          onChange={(e) => setTime(e, "to")}
           name={`day-${counter}`}
           style={{
             width: "80%",
